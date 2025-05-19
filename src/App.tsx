@@ -1,28 +1,19 @@
-
-import { Button } from '@chakra-ui/react'
+import { Grid, GridItem, Stack } from '@chakra-ui/react'
 import './App.css'
-import { ColorModeButton } from './components/ui/color-mode'
-import { toaster, Toaster } from './components/ui/toaster'
 
 function App() {
 
   return (
-    <>
-      <ColorModeButton>
-      </ColorModeButton>
-      <Toaster></Toaster>
-      <Button onClick={() => toaster.create({
-        description: "File is saved",
-        type: "info",
-        action: {
-          label: "X",
-          onClick: () => { }
-        }
-      })}>
-        Save file
-
-      </Button>
-    </>
+    <Grid templateAreas={{
+      base: `'nav' 'main'`,
+      md: `'nav nav' 'aside main'`
+    }}>
+      <GridItem area="nav" bg="gold">NAV</GridItem>
+      <Stack hideBelow="md">
+        <GridItem area="aside" bg="coral">ASIDE</GridItem>
+      </Stack>
+      <GridItem area="main" bg="dodgerblue">MAIN</GridItem>
+    </Grid>
   )
 }
 
