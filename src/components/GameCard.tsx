@@ -24,8 +24,8 @@ const GameCard: React.FC<Props> = ({ game }) => {
             </Card.Body>
             <Card.Footer gap="2" flexWrap="wrap">
                 <HStack justifyContent="space-between" width="100%">
-                    <Badge {...getColors(game.metacritic)} variant="solid">{game.metacritic}</Badge>
                     <Text textStyle="xs">{game.parent_platforms.map(p => p.platform.name).join(", ")}</Text>
+                    <Badge {...getColors(game.metacritic)} variant="solid">{game.metacritic}</Badge>
                 </HStack>
             </Card.Footer>
         </Card.Root>
