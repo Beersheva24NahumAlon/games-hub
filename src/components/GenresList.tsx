@@ -1,30 +1,30 @@
 import React from 'react'
-import { Gener, GenresResponse } from '../model/fetch-gener-types';
+import { Genre, GenresResponse } from '../model/fetch-genre-types';
 import { Text, List, Avatar, HStack, Button } from '@chakra-ui/react'
 import useApi from '../hooks/useApi';
 
 interface Props {
-    onSelectGener: (genreName: string) => void;
+    onSelectGenre: (genreName: string) => void;
 }
 
-const GenresList: React.FC<Props> = ({onSelectGener}) => {
+const GenresList: React.FC<Props> = ({onSelectGenre}) => {
 
-    const {data, errorMsg} = useApi<Gener, GenresResponse>("/genres");
+    const {data, errorMsg} = useApi<Genre, GenresResponse>("/genres");
 
     return (
         <>{
             errorMsg ?
                 <Text color="red">{errorMsg}</Text> :
                 <List.Root maxHeight="85vh" overflow="auto">
-                    {data.map(gener =>
-                        <List.Item key={gener.id} marginBottom="2" paddingX="2">
+                    {data.map(genre =>
+                        <List.Item key={genre.id} marginBottom="2" paddingX="2">
                             <HStack>
                                 <Avatar.Root shape="rounded" me="-2">
-                                    <Avatar.Fallback name={gener.name} />
-                                    <Avatar.Image src={gener.image_background} />
+                                    <Avatar.Fallback name={genre.name} />
+                                    <Avatar.Image src={genre.image_background} />
                                 </Avatar.Root>
-                                <Button variant="outline" borderWidth="0" onClick={onSelectGener.bind(undefined, gener.name)}>
-                                    {gener.name}
+                                <Button variant="outline" borderWidth="0" onClick={onSelectGenre.bind(undefined, genre.name)}>
+                                    {genre.name}
                                 </Button>
                             </HStack>
                         </List.Item>
