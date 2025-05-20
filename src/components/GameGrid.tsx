@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from 'react'
 import api from '../services/api-client'
+import { AxiosError } from 'axios';
 
 interface Game {
     id: number,
@@ -13,16 +14,20 @@ interface GamesResponse {
 }
 
 const GameGrid: React.FC = () => {
-    const [data, setData] = useState<GamesResponse>({count: 0, results: []});
+    const [games, setGames] = useState<Game[]>([]);
 
     useEffect(() => {
-        api.get("/games").then(res => setData(res.data));
+        api.get<GamesResponse>("/gamesx", {params: {page_size: 100}})
+                .then(res => setGames(res.data.results))
+                        .catch((err: AxiosError) => setGames([{id: 0, name: err.message}]));
         console.log("getting data from API");
     }, []);
 
     return (
         <ul>
-            {data.results.map(game => <li key={game.id}>{game.name}</li>)}
+            {games.map(game => 
+                <li key={game.id}>{game.name}</li>
+            )}
         </ul>
     )
 }
