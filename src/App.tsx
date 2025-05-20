@@ -10,14 +10,14 @@ function App() {
       base: `'nav' 'main'`,
       md: `'nav nav' 'aside main'`
     }}>
-      <GridItem area="nav" bg="gold">
+      <GridItem area="nav">
         <Nav/>
       </GridItem>
       <Stack hideBelow="md">
         <GridItem area="aside" bg="coral">ASIDE</GridItem>
       </Stack>
-      <GridItem area="main" bg="dodgerblue">
-        <GameGrid />
+      <GridItem area="main">
+        <GameGrid/>
       </GridItem>
     </Grid>
   )
