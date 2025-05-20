@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Gener, GenresResponse } from '../model/fetch-gener-types';
-import api from '../services/api-client'
-import { AxiosError } from 'axios';
 import { Text, List, Avatar, HStack, Button } from '@chakra-ui/react'
+import useApi from '../hooks/useApi';
 
 interface Props {
     onSelectGener: (genreName: string) => void;
@@ -10,21 +9,14 @@ interface Props {
 
 const GenresList: React.FC<Props> = ({onSelectGener}) => {
 
-    const [genres, setGenres] = useState<Gener[]>([]);
-    const [errorMsg, setErrorMsg] = useState<string>("");
-
-    useEffect(() => {
-        api.get<GenresResponse>("/genres")
-            .then(res => setGenres(res.data.results))
-            .catch((err: AxiosError) => setErrorMsg(err.message));
-    }, []);
+    const {data, errorMsg} = useApi<Gener, GenresResponse>("/genres");
 
     return (
         <>{
             errorMsg ?
                 <Text color="red">{errorMsg}</Text> :
                 <List.Root maxHeight="85vh" overflow="auto">
-                    {genres.map(gener =>
+                    {data.map(gener =>
                         <List.Item key={gener.id} marginBottom="2" paddingX="2">
                             <HStack>
                                 <Avatar.Root shape="rounded" me="-2">
