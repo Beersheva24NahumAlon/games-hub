@@ -1,9 +1,13 @@
-import { Badge, Card, Image, Text } from '@chakra-ui/react'
+import { Badge, Card, HStack, Image, Text } from '@chakra-ui/react'
 import React from 'react'
 import { Game } from '../model/fetch-game-types'
 
 interface Props {
     game: Game;
+}
+
+function getColors(metacritic: number): {bg: string, color: string} {
+    return metacritic > 90 ? {bg: "green", color: "white"} : {bg: "lightgray", color: "initial"};
 }
 
 const GameCard: React.FC<Props> = ({ game }) => {
@@ -19,8 +23,10 @@ const GameCard: React.FC<Props> = ({ game }) => {
                 <Card.Title>{game.name}</Card.Title>
             </Card.Body>
             <Card.Footer gap="2" flexWrap="wrap">
-                <Badge colorPalette={game.metacritic > 90 ? "green" : "gray"} variant="solid">{game.metacritic}</Badge>
-                {game.parent_platforms.map(p => <Text textStyle="xs">{p.platform.slug}</Text>)}
+                <HStack justifyContent="space-between" width="100%">
+                    <Badge {...getColors(game.metacritic)} variant="solid">{game.metacritic}</Badge>
+                    <Text textStyle="xs">{game.parent_platforms.map(p => p.platform.name).join(", ")}</Text>
+                </HStack>
             </Card.Footer>
         </Card.Root>
     )
