@@ -1,10 +1,19 @@
 export interface Game {
-    id: number,
+    id: number;
     background_image: string;
-    name: string
+    name: string;
+    parent_platforms: Platform[];
+    metacritic: number;
 }
 
 export interface GamesResponse {
     count: number;
     results: Game[];
+}
+
+export interface Platform {
+    platform: {
+        name: string;
+        slug: string;
+    }
 }
