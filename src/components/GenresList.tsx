@@ -4,9 +4,10 @@ import useApiGenres from '../hooks/useGenres';
 
 interface Props {
     onSelectGenre: (genreName: string) => void;
+    selectedGenre: string | null;
 }
 
-const GenresList: React.FC<Props> = ({ onSelectGenre }) => {
+const GenresList: React.FC<Props> = ({ onSelectGenre, selectedGenre }) => {
 
     const { data: genres, errorMsg, isLoading } = useApiGenres();
     return isLoading ?
@@ -23,7 +24,12 @@ const GenresList: React.FC<Props> = ({ onSelectGenre }) => {
                                         <Avatar.Fallback name={genre.name} />
                                         <Avatar.Image src={genre.image_background} />
                                     </Avatar.Root>
-                                    <Button variant="outline" borderWidth="0" onClick={() => onSelectGenre(genre.slug)}>
+                                    <Button 
+                                        variant="outline" 
+                                        borderWidth="0" 
+                                        onClick={() => onSelectGenre(genre.slug)} 
+                                        fontWeight={selectedGenre === genre.slug ? "bold" : "normal"}
+                                    >
                                         {genre.name}
                                     </Button>
                                 </HStack>
