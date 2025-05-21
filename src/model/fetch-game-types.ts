@@ -6,11 +6,6 @@ export interface Game {
     metacritic: number;
 }
 
-export interface GamesResponse {
-    count: number;
-    results: Game[];
-}
-
 export interface Platform {
     platform: {
         id: number;
