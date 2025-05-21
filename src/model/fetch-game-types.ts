@@ -4,6 +4,8 @@ export interface Game {
     name: string;
     parent_platforms: Platform[];
     metacritic: number;
+    rating: number;
+    rating_top: number;
 }
 
 export interface Platform {
