@@ -1,13 +1,12 @@
 
 import React from 'react'
-import { Game, GamesResponse } from '../model/fetch-game-types';
 import { SimpleGrid, Text } from '@chakra-ui/react'
 import GameCard from './GameCard';
-import useApi from '../hooks/useApi';
+import useApiGames from '../hooks/useApiGames';
 
 const GameGrid: React.FC = () => {
 
-    const {data, errorMsg} = useApi<Game, GamesResponse>("/games");
+    const {data, errorMsg} = useApiGames();
 
     return (
         <>{

@@ -1,7 +1,6 @@
 import React from 'react'
-import { Genre, GenresResponse } from '../model/fetch-genre-types';
 import { Text, List, Avatar, HStack, Button } from '@chakra-ui/react'
-import useApi from '../hooks/useApi';
+import useApiGenres from '../hooks/useApiGenres';
 
 interface Props {
     onSelectGenre: (genreName: string) => void;
@@ -9,7 +8,7 @@ interface Props {
 
 const GenresList: React.FC<Props> = ({onSelectGenre}) => {
 
-    const {data, errorMsg} = useApi<Genre, GenresResponse>("/genres");
+    const {data, errorMsg} = useApiGenres();
 
     return (
         <>{
