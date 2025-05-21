@@ -1,5 +1,5 @@
 
-import React, { ReactNode } from 'react'
+import React from 'react'
 import { SimpleGrid, Spinner, Text } from '@chakra-ui/react'
 import GameCard from './GameCard';
 import useGames from '../hooks/useGames';
@@ -7,10 +7,9 @@ import useGames from '../hooks/useGames';
 const GameGrid: React.FC = () => {
 
     const { data: games, errorMsg, isLoading } = useGames();
-    let res: ReactNode = <Spinner></Spinner>;
-
-    if (!isLoading) {
-        res = (
+    return isLoading ? 
+        ( <Spinner /> ) :
+        (
             <>{
                 errorMsg ?
                     <Text color="red">{errorMsg}</Text> :
@@ -27,9 +26,7 @@ const GameGrid: React.FC = () => {
                         )}
                     </SimpleGrid>
             }</>
-        )
-    }
-    return res;
+        );
 }
 
 export default GameGrid

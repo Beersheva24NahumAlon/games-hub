@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React from 'react'
 import { Text, List, Avatar, HStack, Button, Spinner } from '@chakra-ui/react'
 import useApiGenres from '../hooks/useGenres';
 
@@ -9,10 +9,9 @@ interface Props {
 const GenresList: React.FC<Props> = ({ onSelectGenre }) => {
 
     const { data: genres, errorMsg, isLoading } = useApiGenres();
-    let res: ReactNode = <Spinner></Spinner>;
-
-    if (!isLoading) {
-        res = (
+    return isLoading ?
+        ( <Spinner /> ) :
+        (
             <>{
                 errorMsg ?
                     <Text color="red">{errorMsg}</Text> :
@@ -32,9 +31,7 @@ const GenresList: React.FC<Props> = ({ onSelectGenre }) => {
                         )}
                     </List.Root>
             }</>
-        )
-    }
-    return res;
+        );
 }
 
 export default GenresList
