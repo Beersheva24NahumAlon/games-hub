@@ -28,7 +28,7 @@ const GameCard: React.FC<Props> = ({ game }) => {
                     <Text textStyle="xs">{game.parent_platforms.map(p => p.platform.name).join(", ")}</Text>
                     <Badge {...getColors(game.metacritic)} variant="solid">{game.metacritic}</Badge>
                 </HStack>
-                <Rating rating={game.rating}/>
+                <Rating rate={game.rating}/>
             </Card.Footer>
         </Card.Root>
     )
