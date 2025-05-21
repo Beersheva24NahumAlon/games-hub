@@ -23,7 +23,7 @@ const GenresList: React.FC<Props> = ({ onSelectGenre }) => {
                                         <Avatar.Fallback name={genre.name} />
                                         <Avatar.Image src={genre.image_background} />
                                     </Avatar.Root>
-                                    <Button variant="outline" borderWidth="0" onClick={onSelectGenre.bind(undefined, genre.name)}>
+                                    <Button variant="outline" borderWidth="0" onClick={() => onSelectGenre(genre.slug)}>
                                         {genre.name}
                                     </Button>
                                 </HStack>

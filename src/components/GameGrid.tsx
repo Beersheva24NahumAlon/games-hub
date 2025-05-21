@@ -4,9 +4,13 @@ import { SimpleGrid, Spinner, Text } from '@chakra-ui/react'
 import GameCard from './GameCard';
 import useGames from '../hooks/useGames';
 
-const GameGrid: React.FC = () => {
+interface Props {
+    selectedGenre: string | null;
+}
 
-    const { data: games, errorMsg, isLoading } = useGames();
+const GameGrid: React.FC<Props> = ({selectedGenre}) => {
+
+    const { data: games, errorMsg, isLoading } = useGames(selectedGenre);
     return isLoading ? 
         ( <Spinner /> ) :
         (
