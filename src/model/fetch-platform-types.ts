@@ -3,5 +3,3 @@ export interface Platform {
     name: string;
 }
 
-export const allPlatforms: Platform = { id: 0, name: "All platforms" };
-
