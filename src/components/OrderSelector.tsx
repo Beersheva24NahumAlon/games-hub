@@ -34,18 +34,18 @@ const OrderSelector: React.FC<Props> = ({onSelectOrder, selectedOrder}) => {
             <ComponentMotion duration={duration} timing={easeOut}>
               <Menu.Content>
                 <Menu.Item
-                  key={"p.id"}
+                  key="order"
                   onClick={() => {
                     onSelectOrder(null);
                     setIsOpen(false);
                   }}
-                  value={""}
+                  value=""
                 >
                   Order
                 </Menu.Item>
                 {
-                  orderList.map(item =>
-                    <Menu.Item value={item.value} key={item.value} onClick={() => { onSelectOrder(item); setIsOpen(false); }}>{item.name} </Menu.Item>)
+                  orderList.map(order =>
+                    <Menu.Item value={order.value} key={order.value} onClick={() => { onSelectOrder(order); setIsOpen(false); }}>{order.name} </Menu.Item>)
                 }
               </Menu.Content>
             </ComponentMotion>
