@@ -4,9 +4,10 @@ import { SimpleGrid, Spinner, Text } from '@chakra-ui/react'
 import GameCard from './GameCard';
 import useGames from '../hooks/useGames';
 import { Platform } from '../model/fetch-platform-types';
+import { Genre } from '../model/fetch-genre-types';
 
 interface Props {
-    selectedGenre: string | null;
+    selectedGenre: Genre | null;
     selectedPlatform: Platform | null;
 }
 

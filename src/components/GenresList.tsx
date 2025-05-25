@@ -1,15 +1,18 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { Text, List, Avatar, HStack, Button, Spinner } from '@chakra-ui/react'
 import useGenres from '../hooks/useGenres';
+import { allGenres, Genre } from '../model/fetch-genre-types';
 
 interface Props {
-    onSelectGenre: (genreName: string) => void;
-    selectedGenre: string | null;
+    onSelectGenre: (genreObj: Genre) => void;
+    selectedGenre: Genre | null;
 }
 
 const GenresList: React.FC<Props> = ({ onSelectGenre, selectedGenre }) => {
 
     const { data: genres, errorMsg, isLoading } = useGenres();
+    useMemo(() => genres.unshift(allGenres), genres);
+
     return isLoading ?
         ( <Spinner /> ) :
         (
@@ -27,8 +30,8 @@ const GenresList: React.FC<Props> = ({ onSelectGenre, selectedGenre }) => {
                                     <Button 
                                         variant="outline" 
                                         borderWidth="0" 
-                                        onClick={() => onSelectGenre(genre.slug)} 
-                                        fontWeight={selectedGenre === genre.slug ? "bold" : "normal"}
+                                        onClick={() => onSelectGenre(genre)} 
+                                        fontWeight={selectedGenre?.slug === genre.slug ? "bold" : "normal"}
                                     >
                                         {genre.name}
                                     </Button>

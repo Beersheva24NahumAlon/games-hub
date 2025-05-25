@@ -5,3 +5,5 @@ export interface Genre {
     image_background: string;
 }
 
+export const allGenres: Genre = { id: 0, name: "All genres", slug: "", image_background: "" };
+

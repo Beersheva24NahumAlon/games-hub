@@ -1,6 +1,7 @@
 export interface Platform {
     id: number;
     name: string;
-    slug: string;
 }
+
+export const allPlatforms: Platform = { id: 0, name: "All platforms" };
 
