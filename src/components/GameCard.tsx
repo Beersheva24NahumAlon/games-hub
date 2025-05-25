@@ -7,15 +7,15 @@ interface Props {
     game: Game;
 }
 
-function getColors(metacritic: number): {bg: string, color: string} {
-    return metacritic > 90 ? {bg: "green", color: "white"} : {bg: "lightgray", color: "initial"};
+function getColors(metacritic: number): { bg: string, color: string } {
+    return metacritic > 90 ? { bg: "green", color: "white" } : { bg: "lightgray", color: "initial" };
 }
-
+const srcDefault = "../../public/No-Image-Placeholder.svg";
 const GameCard: React.FC<Props> = ({ game }) => {
     return (
         <Card.Root maxW="sm" overflow="hidden">
             <Image
-                src={game.background_image}
+                src={game.background_image || srcDefault}
                 alt={`image of ${game.name}`}
                 objectFit="cover"
                 height="100%"
@@ -28,7 +28,7 @@ const GameCard: React.FC<Props> = ({ game }) => {
                     <Text textStyle="xs">{game.parent_platforms.map(p => p.platform.name).join(", ")}</Text>
                     {game.metacritic && <Badge {...getColors(game.metacritic)} variant="solid">{game.metacritic}</Badge>}
                 </HStack>
-                <Rating rate={game.rating}/>
+                <Rating rate={game.rating} />
             </Card.Footer>
         </Card.Root>
     )
