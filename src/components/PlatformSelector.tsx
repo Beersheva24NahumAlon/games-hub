@@ -23,7 +23,7 @@ const PlatformSelector: React.FC<Props> = ({ onSelectPlatform, selectedPlatform 
                 errorMsg ?
                     <Text color="red">{errorMsg}</Text> :
                     <Box>
-                        <Menu.Root >
+                        <Menu.Root onExitComplete={() => setIsOpen(false)}>
                             <Menu.Trigger asChild>
                                 <Button variant="outline" size="sm" onClick={() => setIsOpen(!isOpen)}>
                                     {selectedPlatform ? selectedPlatform.name : "All platforms"}
@@ -42,7 +42,6 @@ const PlatformSelector: React.FC<Props> = ({ onSelectPlatform, selectedPlatform 
                                                 key={"p.id"}
                                                 onClick={() => {
                                                     onSelectPlatform(null);
-                                                    setIsOpen(false);
                                                 }}
                                                 value={""}
                                             >

@@ -18,7 +18,7 @@ const OrderSelector: React.FC<Props> = ({onSelectOrder, selectedOrder}) => {
   
   return (
     <Box>
-      <Menu.Root >
+      <Menu.Root onExitComplete={() => setIsOpen(false)}>
         <Menu.Trigger asChild>
           <Button variant="outline" size="sm" onClick={() => setIsOpen(!isOpen)}>
             {selectedOrder ? selectedOrder.name : "Order"}
@@ -37,7 +37,7 @@ const OrderSelector: React.FC<Props> = ({onSelectOrder, selectedOrder}) => {
                   key="order"
                   onClick={() => {
                     onSelectOrder(null);
-                    setIsOpen(false);
+                  
                   }}
                   value=""
                 >
