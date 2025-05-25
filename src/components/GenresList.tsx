@@ -19,15 +19,15 @@ const GenresList: React.FC<Props> = ({ onSelectGenre, selectedGenre }) => {
                 errorMsg ?
                     <Text color="red">{errorMsg}</Text> :
                     <List.Root maxHeight="85vh" overflow="auto">
-                        <List.Item key={"g.id"}>
-                            <HStack marginStart={"4vw"}>
+                        <List.Item key="g.id" marginBottom="2" paddingX="2">
+                            <HStack>
                                 <Button
-                                    fontWeight={!selectedGenre ? "bold" : "normal"}
-                                    variant={"outline"}
+                                    variant="outline"
                                     borderWidth="0"
                                     onClick={() => onSelectGenre(null)}
+                                    fontWeight={!selectedGenre?.slug ? "bold" : "normal"}
                                 >
-                                    All Genres
+                                    All genres
                                 </Button>
                             </HStack>
                         </List.Item>

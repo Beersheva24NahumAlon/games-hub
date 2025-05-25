@@ -22,11 +22,11 @@ const PlatformSelector: React.FC<Props> = ({ onSelectPlatform, selectedPlatform 
             <>{
                 errorMsg ?
                     <Text color="red">{errorMsg}</Text> :
-                    <Box marginLeft={5}>
+                    <Box>
                         <Menu.Root >
                             <Menu.Trigger asChild>
                                 <Button variant="outline" size="sm" onClick={() => setIsOpen(!isOpen)}>
-                                    {selectedPlatform ? <Text fontWeight="normal">{selectedPlatform.name}</Text> : "All platforms"}
+                                    {selectedPlatform ? selectedPlatform.name : "All platforms"}
                                     {!isOpen ?
                                         <ComponentMotion duration={duration} timing={easeOut}>
                                             <FaAngleDown />

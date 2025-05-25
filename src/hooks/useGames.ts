@@ -11,6 +11,7 @@ export default function useGames(gameQuery: GameQuery): { data: Game[], errorMsg
                 genres: gameQuery.genreObj?.slug,
                 parent_platforms: gameQuery.platformObj?.id,
                 search: gameQuery.search,
+                ordering: gameQuery.orderObj?.value
             },
         },
         [gameQuery]

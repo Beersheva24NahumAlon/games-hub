@@ -1,0 +1,30 @@
+[
+    {
+        "name": "Name",
+        "value": "name"
+    },
+    {
+        "name": "Date of release",
+        "value": "-released"
+    },
+    {
+        "name": "Date of adding",
+        "value": "-added"
+    },
+    {
+        "name": "Date of creation",
+        "value": "-created"
+    },
+    {
+        "name": "Date of updating",
+        "value": "-updated"
+    },
+    {
+        "name": "Rating",
+        "value": "-rating"
+    },
+    {
+        "name": "Metacritic",
+        "value": "-metacritic"
+    }
+]
