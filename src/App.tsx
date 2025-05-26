@@ -9,6 +9,7 @@ import { Platform } from './model/fetch-platform-types'
 import { Genre } from './model/fetch-genre-types'
 import GameQuery from './model/GameQuery'
 import OrderSelector from './components/OrderSelector'
+import GenreSelector from './components/GenreSelector'
 
 function App() {
 
@@ -20,30 +21,37 @@ function App() {
       md: `'nav nav' 'aside main'`
     }}>
       <GridItem area="nav">
-        <Nav searchSubmitter={(text) => setGameQuery({...gameQuery, search: text})}/>
+        <Nav searchSubmitter={(text) => setGameQuery({ ...gameQuery, search: text })} />
       </GridItem>
       <Stack hideBelow="md">
         <GridItem area="aside">
-          <GenresList 
-            onSelectGenre={(genreObj: Genre | null) => setGameQuery({...gameQuery, genreObj})} 
+          <GenresList
+            onSelectGenre={(genreObj: Genre | null) => setGameQuery({ ...gameQuery, genreObj })}
             selectedGenre={gameQuery.genreObj}
           />
         </GridItem>
       </Stack>
       <GridItem area="main">
         <HStack paddingLeft="5">
-          Platform: 
+          Platform:
           <PlatformSelector
-            onSelectPlatform={(platformObj:Platform | null) => setGameQuery({...gameQuery, platformObj})}
+            onSelectPlatform={(platformObj: Platform | null) => setGameQuery({ ...gameQuery, platformObj })}
             selectedPlatform={gameQuery.platformObj}
           />
           Order by:
           <OrderSelector
             selectedOrder={gameQuery.orderObj}
-            onSelectOrder={(order) => setGameQuery({...gameQuery, orderObj: order})}
+            onSelectOrder={(orderObj) => setGameQuery({ ...gameQuery, orderObj })}
           />
+          <HStack display={{ base: "none", sm: "flex" }} hideFrom="md">
+            Genre:
+            <GenreSelector
+              onSelectGenre={(genreObj: Genre | null) => setGameQuery({ ...gameQuery, genreObj })}
+              selectedGenre={gameQuery.genreObj}
+            />
+          </HStack>
         </HStack>
-        <GameGrid gameQuery={gameQuery}/>
+        <GameGrid gameQuery={gameQuery} />
       </GridItem>
     </Grid>
   )

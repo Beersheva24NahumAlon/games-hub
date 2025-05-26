@@ -10,7 +10,8 @@ interface Props {
 function getColors(metacritic: number): { bg: string, color: string } {
     return metacritic > 90 ? { bg: "green", color: "white" } : { bg: "lightgray", color: "initial" };
 }
-const srcDefault = "../../public/No-Image-Placeholder.svg";
+const srcDefault = "/No-Image-Placeholder.svg";
+
 const GameCard: React.FC<Props> = ({ game }) => {
     return (
         <Card.Root maxW="sm" overflow="hidden">
