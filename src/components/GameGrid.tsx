@@ -1,18 +1,16 @@
-
 import React from 'react'
 import { SimpleGrid, Spinner, Text } from '@chakra-ui/react'
 import GameCard from './GameCard';
 import useGames from '../hooks/useGames';
+import useGameQuery from '../hooks/useGameQuery';
 
-import GameQuery from '../model/GameQuery';
 
-interface Props {
-    gameQuery: GameQuery
-}
+const GameGrid: React.FC = () => {
 
-const GameGrid: React.FC<Props> = ({gameQuery}) => {
+    const gameQueryGlobal = useGameQuery(s => s.gameQuery);
 
-    const { data: games, errorMsg, isLoading } = useGames(gameQuery);
+    const { data: games, errorMsg, isLoading } = useGames(gameQueryGlobal);
+
     return isLoading ? 
         ( <Spinner /> ) :
         (

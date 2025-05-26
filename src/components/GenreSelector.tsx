@@ -1,21 +1,17 @@
 import React, { useState } from 'react'
-import { Genre } from '../model/fetch-genre-types';
 import useGenres from '../hooks/useGenres';
 import { Box, Button, Menu, Portal, Spinner, Text } from '@chakra-ui/react';
 import { easeOut } from 'framer-motion';
 import ComponentMotion from './ComponentMotion';
 import { FaAngleDown, FaAngleUp } from 'react-icons/fa';
-
-interface Props {
-    onSelectGenre: (platformObj: Genre | null) => void;
-    selectedGenre: Genre | null;
-}
+import useGameQuery from '../hooks/useGameQuery';
 
 const duration = 0.5;
-const GenreSelector: React.FC<Props> = ({ onSelectGenre, selectedGenre }) => {
+const GenreSelector: React.FC = () => {
     const { data: genres, errorMsg, isLoading } = useGenres();
     const [isOpen, setIsOpen] = useState<boolean>(false);
-
+    const setGenre = useGameQuery(s => s.setGenre);
+    const selectedGenre = useGameQuery(s => s.gameQuery.genreObj);
     return isLoading ?
         (<Spinner />) :
         (
@@ -41,15 +37,15 @@ const GenreSelector: React.FC<Props> = ({ onSelectGenre, selectedGenre }) => {
                                             <Menu.Item
                                                 key={"p.id"}
                                                 onClick={() => {
-                                                    onSelectGenre(null);
+                                                    setGenre(null);
                                                 }}
                                                 value={""}
                                             >
-                                                All genres
+                                                All platforms
                                             </Menu.Item>
                                             {
                                                 genres.map(p =>
-                                                    <Menu.Item value={p.name} key={p.id} onClick={() => { onSelectGenre(p); setIsOpen(false); }}>{p.name} </Menu.Item>)
+                                                    <Menu.Item value={p.name} key={p.id} onClick={() => { setGenre(p); setIsOpen(false); }}>{p.name} </Menu.Item>)
                                             }
                                         </Menu.Content>
                                     </ComponentMotion>

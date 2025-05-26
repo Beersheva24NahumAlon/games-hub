@@ -2,19 +2,18 @@ import React, { useState } from 'react'
 import usePlatforms from '../hooks/usePlatforms';
 import { Box, Button, Menu, Portal, Spinner, Text } from '@chakra-ui/react';
 import { FaAngleDown, FaAngleUp } from 'react-icons/fa';
-import { Platform } from '../model/fetch-platform-types';
 import ComponentMotion from './ComponentMotion';
 import { easeOut } from 'framer-motion';
-
-interface Props {
-    onSelectPlatform: (platformObj: Platform | null) => void;
-    selectedPlatform: Platform | null;
-}
+import useGameQuery from '../hooks/useGameQuery';
 
 const duration = 0.5;
-const PlatformSelector: React.FC<Props> = ({ onSelectPlatform, selectedPlatform }) => {
+const PlatformSelector: React.FC = () => {
+
     const { data: platforms, errorMsg, isLoading } = usePlatforms();
     const [isOpen, setIsOpen] = useState<boolean>(false);
+
+    const setPlaftorm = useGameQuery(s => s.setPlatform);
+    const selectedPlatform = useGameQuery(s => s.gameQuery.platformObj);
 
     return isLoading ?
         (<Spinner />) :
@@ -41,7 +40,7 @@ const PlatformSelector: React.FC<Props> = ({ onSelectPlatform, selectedPlatform 
                                             <Menu.Item
                                                 key={"p.id"}
                                                 onClick={() => {
-                                                    onSelectPlatform(null);
+                                                    setPlaftorm(null);
                                                 }}
                                                 value={""}
                                             >
@@ -49,7 +48,7 @@ const PlatformSelector: React.FC<Props> = ({ onSelectPlatform, selectedPlatform 
                                             </Menu.Item>
                                             {
                                                 platforms.map(p =>
-                                                    <Menu.Item value={p.name} key={p.id} onClick={() => { onSelectPlatform(p); setIsOpen(false); }}>{p.name} </Menu.Item>)
+                                                    <Menu.Item value={p.name} key={p.id} onClick={() => { setPlaftorm(p); setIsOpen(false); }}>{p.name} </Menu.Item>)
                                             }
                                         </Menu.Content>
                                     </ComponentMotion>

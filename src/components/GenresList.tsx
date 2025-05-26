@@ -1,16 +1,13 @@
 import React from 'react'
 import { Text, List, Avatar, HStack, Button, Spinner } from '@chakra-ui/react'
 import useGenres from '../hooks/useGenres';
-import { Genre } from '../model/fetch-genre-types';
+import useGameQuery from '../hooks/useGameQuery';
 
-interface Props {
-    onSelectGenre: (genreObj: Genre | null) => void;
-    selectedGenre: Genre | null;
-}
-
-const GenresList: React.FC<Props> = ({ onSelectGenre, selectedGenre }) => {
+const GenresList: React.FC = () => {
 
     const { data: genres, errorMsg, isLoading } = useGenres();
+    const setGenre = useGameQuery(s => s.setGenre);
+    const selectedGenre = useGameQuery(s => s.gameQuery.genreObj);
 
     return isLoading ?
         (<Spinner />) :
@@ -24,7 +21,7 @@ const GenresList: React.FC<Props> = ({ onSelectGenre, selectedGenre }) => {
                                 <Button
                                     variant="outline"
                                     borderWidth="0"
-                                    onClick={() => onSelectGenre(null)}
+                                    onClick={() => setGenre(null)}
                                     fontWeight={!selectedGenre?.slug ? "bold" : "normal"}
                                 >
                                     All genres
@@ -41,7 +38,7 @@ const GenresList: React.FC<Props> = ({ onSelectGenre, selectedGenre }) => {
                                     <Button
                                         variant="outline"
                                         borderWidth="0"
-                                        onClick={() => onSelectGenre(genre)}
+                                        onClick={() => setGenre(genre)}
                                         fontWeight={selectedGenre?.slug === genre.slug ? "bold" : "normal"}
                                     >
                                         {genre.name}

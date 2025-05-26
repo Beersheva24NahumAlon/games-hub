@@ -4,17 +4,15 @@ import { Box, Button, Menu, Portal } from '@chakra-ui/react';
 import ComponentMotion from './ComponentMotion';
 import { FaAngleDown, FaAngleUp } from 'react-icons/fa';
 import { easeOut } from 'framer-motion';
-import Order from '../model/Order';
+import useGameQuery from '../hooks/useGameQuery';
 
-interface Props {
-    onSelectOrder: (order: Order | null) => void;
-    selectedOrder: Order | null;
-}
 
 const duration = 0.5;
-const OrderSelector: React.FC<Props> = ({onSelectOrder, selectedOrder}) => {
+const OrderSelector: React.FC = () => {
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const setOrder = useGameQuery(s => s.setOrder);
+  const selectedOrder = useGameQuery(s => s.gameQuery.orderObj);
   
   return (
     <Box>
@@ -36,7 +34,7 @@ const OrderSelector: React.FC<Props> = ({onSelectOrder, selectedOrder}) => {
                 <Menu.Item
                   key="order"
                   onClick={() => {
-                    onSelectOrder(null);
+                    setOrder(null);
                   
                   }}
                   value=""
@@ -45,7 +43,7 @@ const OrderSelector: React.FC<Props> = ({onSelectOrder, selectedOrder}) => {
                 </Menu.Item>
                 {
                   orderList.map(order =>
-                    <Menu.Item value={order.value} key={order.value} onClick={() => { onSelectOrder(order); setIsOpen(false); }}>{order.name} </Menu.Item>)
+                    <Menu.Item value={order.value} key={order.value} onClick={() => { setOrder(order); setIsOpen(false); }}>{order.name} </Menu.Item>)
                 }
               </Menu.Content>
             </ComponentMotion>
