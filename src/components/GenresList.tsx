@@ -5,7 +5,7 @@ import useGameQuery from '../state-management/store';
 
 const GenresList: React.FC = () => {
 
-    const { data: genres, errorMsg, isLoading } = useGenres();
+    const { data: genres, error, isLoading } = useGenres();
     const setGenre = useGameQuery(s => s.setGenre);
     const selectedGenre = useGameQuery(s => s.gameQuery.genreObj);
 
@@ -13,8 +13,8 @@ const GenresList: React.FC = () => {
         (<Spinner />) :
         (
             <>{
-                errorMsg ?
-                    <Text color="red">{errorMsg}</Text> :
+                error?.message ?
+                    <Text color="red">{error?.message}</Text> :
                     <List.Root maxHeight="85vh" overflow="auto">
                         <List.Item key="g.id" marginBottom="2" paddingX="2">
                             <HStack>
@@ -28,7 +28,7 @@ const GenresList: React.FC = () => {
                                 </Button>
                             </HStack>
                         </List.Item>
-                        {genres.map(genre =>
+                        {genres?.map(genre =>
                             <List.Item key={genre.id} marginBottom="2" paddingX="2">
                                 <HStack>
                                     <Avatar.Root shape="rounded" me="-2">

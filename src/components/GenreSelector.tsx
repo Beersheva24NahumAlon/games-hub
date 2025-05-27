@@ -8,7 +8,7 @@ import useGameQuery from '../state-management/store';
 
 const duration = 0.5;
 const GenreSelector: React.FC = () => {
-    const { data: genres, errorMsg, isLoading } = useGenres();
+    const { data: genres, error, isLoading } = useGenres();
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const setGenre = useGameQuery(s => s.setGenre);
     const selectedGenre = useGameQuery(s => s.gameQuery.genreObj);
@@ -16,8 +16,8 @@ const GenreSelector: React.FC = () => {
         (<Spinner />) :
         (
             <>{
-                errorMsg ?
-                    <Text color="red">{errorMsg}</Text> :
+                error?.message ?
+                    <Text color="red">{error.message}</Text> :
                     <Box>
                         <Menu.Root onExitComplete={() => setIsOpen(false)}>
                             <Menu.Trigger asChild>
@@ -42,7 +42,7 @@ const GenreSelector: React.FC = () => {
                                                 All genres
                                             </Menu.Item>
                                             {
-                                                genres.map(p =>
+                                                genres?.map(p =>
                                                     <Menu.Item value={p.name} key={p.id} onClick={() => { setGenre(p); setIsOpen(false); }}>{p.name} </Menu.Item>)
                                             }
                                         </Menu.Content>

@@ -1,8 +1,12 @@
+import { useQuery } from "@tanstack/react-query";
 import { Genre } from "../model/fetch-genre-types";
-import useFetchData from "./useFetchData";
-
+import api from '../services/api-client';
+import DataResponse from "../model/data-response";
 const endpoint = "/genres";
 
-export default function useGenres() : {data: Genre[], errorMsg: string, isLoading: boolean} {
-    return useFetchData<Genre>(endpoint);
+export default function useGenres() {
+    return useQuery<Genre[], Error>({
+        queryKey: [endpoint],
+        queryFn: () => api.get<DataResponse<Genre>>(endpoint).then(res => res.data.results)
+    });
 }
