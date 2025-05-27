@@ -2,6 +2,7 @@ import { Badge, Card, HStack, Image, Text } from '@chakra-ui/react'
 import React from 'react'
 import { Game } from '../model/fetch-game-types'
 import Rating from './Rating';
+import noImage from '/No-Image-Placeholder.svg'
 
 interface Props {
     game: Game;
@@ -10,13 +11,12 @@ interface Props {
 function getColors(metacritic: number): { bg: string, color: string } {
     return metacritic > 90 ? { bg: "green", color: "white" } : { bg: "lightgray", color: "initial" };
 }
-const srcDefault = "/No-Image-Placeholder.svg";
 
 const GameCard: React.FC<Props> = ({ game }) => {
     return (
         <Card.Root maxW="sm" overflow="hidden">
             <Image
-                src={game.background_image || srcDefault}
+                src={game.background_image || noImage}
                 alt={`image of ${game.name}`}
                 objectFit="cover"
                 height="100%"

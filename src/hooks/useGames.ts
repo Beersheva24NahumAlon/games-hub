@@ -1,10 +1,11 @@
 import { Game } from "../model/fetch-game-types";
-import GameQuery from "../model/GameQuery";
+import useGameQuery from "../state-management/store";
 import useFetchData from "./useFetchData";
 
 const endpoint = "/games";
 
-export default function useGames(gameQuery: GameQuery): { data: Game[], errorMsg: string, isLoading: boolean } {
+export default function useGames(): { data: Game[], errorMsg: string, isLoading: boolean } {
+    const gameQuery = useGameQuery(s => s.gameQuery);
     return useFetchData<Game>(endpoint,
         {
             params: {

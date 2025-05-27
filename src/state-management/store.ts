@@ -2,7 +2,13 @@ import { Platform } from "../model/fetch-platform-types";
 import { Genre } from "../model/fetch-genre-types";
 import Order from "../model/Order";
 import { create } from "zustand";
-import GameQuery from "../model/GameQuery";
+
+interface GameQuery {
+    genreObj: Genre | null;
+    platformObj: Platform | null;
+    search: string | null;
+    orderObj: Order | null;
+}
 
 interface GameQueryStore {
     gameQuery: GameQuery;
