@@ -38,10 +38,8 @@ const PlatformSelector: React.FC = () => {
                                     <ComponentMotion duration={duration} timing={easeOut}>
                                         <Menu.Content>
                                             <Menu.Item
-                                                key={"p.id"}
-                                                onClick={() => {
-                                                    setPlaftorm(null);
-                                                }}
+                                                key={"platform"}
+                                                onClick={() => setPlaftorm(null)}
                                                 value={""}
                                             >
                                                 All platforms

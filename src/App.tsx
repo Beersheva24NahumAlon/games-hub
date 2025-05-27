@@ -26,14 +26,11 @@ function App() {
       </Stack>
       <GridItem area="main">
         <HStack paddingLeft="5">
-          Platform:
           <PlatformSelector/>
-          Order by:
-          <OrderSelector/>
-          <HStack display={{ base: "none", sm: "flex" }} hideFrom="md">
-            Genre:
+          <Stack display={{ base: "none", sm: "flex" }} hideFrom="md">
             <GenreSelector/>
-          </HStack>
+          </Stack>
+          <OrderSelector/>
         </HStack>
         <GameGrid/>
       </GridItem>

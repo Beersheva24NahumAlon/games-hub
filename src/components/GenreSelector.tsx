@@ -35,13 +35,11 @@ const GenreSelector: React.FC = () => {
                                     <ComponentMotion duration={duration} timing={easeOut}>
                                         <Menu.Content>
                                             <Menu.Item
-                                                key={"p.id"}
-                                                onClick={() => {
-                                                    setGenre(null);
-                                                }}
+                                                key={"genre"}
+                                                onClick={() => setGenre(null)}
                                                 value={""}
                                             >
-                                                All platforms
+                                                All genres
                                             </Menu.Item>
                                             {
                                                 genres.map(p =>

@@ -18,6 +18,6 @@ const useGameQuery = create<GameQueryStore>(set => ({
     setPlatform: (platformObj) => set((prevState) => ({gameQuery: {...prevState.gameQuery, platformObj}})),
     setSearch: (search) => set((prevState) => ({gameQuery: {...prevState.gameQuery, search}})),
     setOrder: (orderObj) => set((prevState) => ({gameQuery: {...prevState.gameQuery, orderObj}})),
-}))
+}));
 
 export default useGameQuery;

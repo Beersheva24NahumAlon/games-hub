@@ -19,7 +19,7 @@ const OrderSelector: React.FC = () => {
       <Menu.Root onExitComplete={() => setIsOpen(false)}>
         <Menu.Trigger asChild>
           <Button variant="outline" size="sm" onClick={() => setIsOpen(!isOpen)}>
-            {selectedOrder ? selectedOrder.name : "Order"}
+            Order by {selectedOrder ? selectedOrder.name : "Default"}
             {!isOpen ?
               <ComponentMotion duration={duration} timing={easeOut}>
                 <FaAngleDown />
@@ -33,13 +33,10 @@ const OrderSelector: React.FC = () => {
               <Menu.Content>
                 <Menu.Item
                   key="order"
-                  onClick={() => {
-                    setOrder(null);
-                  
-                  }}
+                  onClick={() => setOrder(null)}
                   value=""
                 >
-                  Order
+                  Default
                 </Menu.Item>
                 {
                   orderList.map(order =>
