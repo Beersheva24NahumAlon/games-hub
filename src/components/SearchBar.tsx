@@ -1,13 +1,13 @@
 import { Box, Input, InputGroup } from '@chakra-ui/react'
 import React, { FormEvent, useRef } from 'react'
 import { FaSearch } from 'react-icons/fa'
-import useGameQuery from '../hooks/useGameQuery'
+import useGameQuery from '../state-management/store'
 
 
 const SearchBar: React.FC = () => {
     const setSerch = useGameQuery(s => s.setSearch);
     const searchText = useGameQuery(s => s.gameQuery.search);
-    
+
     const inputElement = useRef<HTMLInputElement>(null);
     const onSubmit = (event: FormEvent) => {
         event.preventDefault();

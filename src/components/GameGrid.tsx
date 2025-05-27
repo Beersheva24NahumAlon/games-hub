@@ -2,7 +2,7 @@ import React from 'react'
 import { SimpleGrid, Spinner, Text } from '@chakra-ui/react'
 import GameCard from './GameCard';
 import useGames from '../hooks/useGames';
-import useGameQuery from '../hooks/useGameQuery';
+import useGameQuery from '../state-management/store';
 
 
 const GameGrid: React.FC = () => {

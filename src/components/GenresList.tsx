@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, List, Avatar, HStack, Button, Spinner } from '@chakra-ui/react'
 import useGenres from '../hooks/useGenres';
-import useGameQuery from '../hooks/useGameQuery';
+import useGameQuery from '../state-management/store';
 
 const GenresList: React.FC = () => {
 

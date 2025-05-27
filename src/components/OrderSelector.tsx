@@ -4,7 +4,7 @@ import { Box, Button, Menu, Portal } from '@chakra-ui/react';
 import ComponentMotion from './ComponentMotion';
 import { FaAngleDown, FaAngleUp } from 'react-icons/fa';
 import { easeOut } from 'framer-motion';
-import useGameQuery from '../hooks/useGameQuery';
+import useGameQuery from '../state-management/store';
 
 
 const duration = 0.5;

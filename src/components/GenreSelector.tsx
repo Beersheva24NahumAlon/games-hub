@@ -4,7 +4,7 @@ import { Box, Button, Menu, Portal, Spinner, Text } from '@chakra-ui/react';
 import { easeOut } from 'framer-motion';
 import ComponentMotion from './ComponentMotion';
 import { FaAngleDown, FaAngleUp } from 'react-icons/fa';
-import useGameQuery from '../hooks/useGameQuery';
+import useGameQuery from '../state-management/store';
 
 const duration = 0.5;
 const GenreSelector: React.FC = () => {
