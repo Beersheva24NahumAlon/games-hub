@@ -6,6 +6,8 @@ import useGameQuery from '../hooks/useGameQuery'
 
 const SearchBar: React.FC = () => {
     const setSerch = useGameQuery(s => s.setSearch);
+    const searchText = useGameQuery(s => s.gameQuery.search);
+    
     const inputElement = useRef<HTMLInputElement>(null);
     const onSubmit = (event: FormEvent) => {
         event.preventDefault();
@@ -13,12 +15,12 @@ const SearchBar: React.FC = () => {
         setSerch(inputElement.current?.value || "");
     }
     return (
-        <Box as="form" onSubmit={onSubmit} boxSize="100%">
+        <Box as="form" onSubmit={onSubmit} boxSize="100%" display="flex">
             <InputGroup startElement={<FaSearch />}>
                 <Input 
                     ref={inputElement} 
                     borderRadius="30px" 
-                    placeholder="Search games..."
+                    placeholder={searchText ? `Searched by: ${searchText}` : "Search games..."}
                     onFocus={() => inputElement.current?.value && (inputElement.current.value = "")}
                 />
             </InputGroup>
