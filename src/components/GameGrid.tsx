@@ -5,14 +5,14 @@ import useGames from '../hooks/useGames';
 
 const GameGrid: React.FC = () => {
 
-    const { data: games, errorMsg, isLoading } = useGames();
+    const { data: games, error, isLoading } = useGames();
 
     return isLoading ? 
         ( <Spinner /> ) :
         (
             <>{
-                errorMsg ?
-                    <Text color="red">{errorMsg}</Text> :
+                error?.message ?
+                    <Text color="red">{error.message}</Text> :
                     <SimpleGrid
                         gap="5"
                         maxHeight="85vh"
@@ -21,7 +21,7 @@ const GameGrid: React.FC = () => {
                         columns={{ base: 1, sm: 2, md: 3 }}
                         paddingX="5"
                     >
-                        {games.map(game =>
+                        {games?.map(game =>
                             <GameCard game={game} key={game.id} />
                         )}
                     </SimpleGrid>

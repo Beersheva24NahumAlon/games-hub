@@ -6,7 +6,8 @@ const endpoint = "/genres";
 
 export default function useGenres() {
     return useQuery<Genre[], Error>({
-        queryKey: [endpoint],
-        queryFn: () => api.get<DataResponse<Genre>>(endpoint).then(res => res.data.results)
+        queryKey: ["genres"],
+        queryFn: () => api.get<DataResponse<Genre>>(endpoint).then(res => res.data.results),
+        staleTime: 3600000 * 24
     });
 }

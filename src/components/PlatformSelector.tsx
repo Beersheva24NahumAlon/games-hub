@@ -9,7 +9,7 @@ import useGameQuery from '../state-management/store';
 const duration = 0.5;
 const PlatformSelector: React.FC = () => {
 
-    const { data: platforms, errorMsg, isLoading } = usePlatforms();
+    const { data: platforms, error, isLoading } = usePlatforms();
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
     const setPlaftorm = useGameQuery(s => s.setPlatform);
@@ -19,8 +19,8 @@ const PlatformSelector: React.FC = () => {
         (<Spinner />) :
         (
             <>{
-                errorMsg ?
-                    <Text color="red">{errorMsg}</Text> :
+                error?.message ?
+                    <Text color="red">{error.message}</Text> :
                     <Box>
                         <Menu.Root onExitComplete={() => setIsOpen(false)}>
                             <Menu.Trigger asChild>
@@ -45,7 +45,7 @@ const PlatformSelector: React.FC = () => {
                                                 All platforms
                                             </Menu.Item>
                                             {
-                                                platforms.map(p =>
+                                                platforms?.map(p =>
                                                     <Menu.Item value={p.name} key={p.id} onClick={() => { setPlaftorm(p); setIsOpen(false); }}>{p.name} </Menu.Item>)
                                             }
                                         </Menu.Content>
