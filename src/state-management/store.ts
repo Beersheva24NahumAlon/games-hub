@@ -1,14 +1,8 @@
-import { Platform } from "../model/fetch-platform-types";
-import { Genre } from "../model/fetch-genre-types";
+import Platform from "../model/Platform";
+import Genre from "../model/Genre";
 import Order from "../model/Order";
 import { create } from "zustand";
-
-interface GameQuery {
-    genreObj: Genre | null;
-    platformObj: Platform | null;
-    search: string | null;
-    orderObj: Order | null;
-}
+import GameQuery from "../model/GameQuery";
 
 interface GameQueryStore {
     gameQuery: GameQuery;
@@ -23,12 +17,12 @@ const useGameQuery = create<GameQueryStore>(set => ({
 
     setGenre: (genreObj) => set((prevState) => ({
         gameQuery: prevState.gameQuery.genreObj?.slug != genreObj?.slug 
-            ? {...prevState.gameQuery, genreObj} 
+            ? {...prevState.gameQuery, genreObj, search: null} 
                 : prevState.gameQuery
     })),
     setPlatform: (platformObj) => set((prevState) => ({
         gameQuery: prevState.gameQuery.platformObj?.id != platformObj?.id 
-            ? {...prevState.gameQuery, platformObj} 
+            ? {...prevState.gameQuery, platformObj, search: null} 
                 : prevState.gameQuery
     })),
     setOrder: (orderObj) => set((prevState) => ({

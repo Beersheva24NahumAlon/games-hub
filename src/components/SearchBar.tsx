@@ -11,8 +11,8 @@ const SearchBar: React.FC = () => {
     const inputElement = useRef<HTMLInputElement>(null);
     const onSubmit = (event: FormEvent) => {
         event.preventDefault();
-        inputElement.current?.blur();
         setSerch(inputElement.current?.value || "");
+        inputElement.current?.blur();
     }
     return (
         <Box as="form" onSubmit={onSubmit} boxSize="100%" display="flex">
@@ -22,6 +22,7 @@ const SearchBar: React.FC = () => {
                     borderRadius="30px" 
                     placeholder={searchText ? `Searched by: ${searchText}` : "Search games..."}
                     onFocus={() => inputElement.current?.value && (inputElement.current.value = "")}
+                    onBlur={() => inputElement.current?.value && (inputElement.current.value = "")}
                 />
             </InputGroup>
         </Box>
